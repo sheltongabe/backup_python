@@ -110,3 +110,6 @@ venv.bak/
 
 # Configuration file
 configuration.json
+
+# Doxygen documentation
+docs/html/
