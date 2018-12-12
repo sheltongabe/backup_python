@@ -107,3 +107,6 @@ venv.bak/
 *.odt
 *.ods
 *.uxf
+
+# Configuration file
+configuration.json
