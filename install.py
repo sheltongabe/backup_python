@@ -3,13 +3,24 @@
 # @file	install.py
 # @brief	Setup the directories that are used for this program
 
-_BACKUPS_DIR = './backups/'
-_ARCHIVE_DIR = _BACKUPS_DIR + 'archive/'
+# You need to rename configuration-example.json -> configuration.json
+_CONFIGURATION_FILE = "./configuration.json"
 
+# Import required modules / packages
 try:
-	import os, os.path
+	import os, os.path, json
 except:
 	print("Failed to import required modules")
+	exit(-1)
+
+# Import Configurations
+try:
+	with open(_CONFIGURATION_FILE) as json_file:
+		json_data = json.load(json_file)
+		_BACKUPS_DIR = json_data["BACKUPS_PATH"]
+		_ARCHIVE_DIR = _BACKUPS_DIR + 'archive/'
+except:
+	print("Failed to read configuration file: " + _CONFIGURATION_FILE)
 	exit(-1)
 
 ## 
