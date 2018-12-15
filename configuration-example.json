@@ -1,3 +1,8 @@
 {
+	"BACKUPS_PATH" : "./backups/",
 
+	"workspaces" : {
+		"workspace_1" : "Absolute Path To Directory/",
+		"workspace_2" : "Absolute Path To Directory/"
+	}
 }
