@@ -2,6 +2,8 @@
 ##
 # @file	install.py
 # @brief	Setup the directories that are used for this program
+# @date		2018-12-15
+# @author	sheltongabe
 
 # You need to rename configuration-example.json -> configuration.json
 _CONFIGURATION_FILE = "./configuration.json"

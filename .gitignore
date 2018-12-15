@@ -113,3 +113,6 @@ configuration.json
 
 # Doxygen documentation
 docs/html/
+
+# Editor Settings
+.vscode/
