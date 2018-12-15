@@ -25,13 +25,14 @@ except:
 	print("Failed to read configuration file: " + _CONFIGURATION_FILE)
 	exit(-1)
 
-## 
-# @brief	Entry for the program, and set's up the directories required
-def main():
-	if(not makeDir(_BACKUPS_DIR)):
-		exit(-1)
-	if(not makeDir(_ARCHIVE_DIR)):
-		exit(-1)
+_INSTALL_DIRS = (_BACKUPS_DIR, _ARCHIVE_DIR)
+
+##
+# @brief	Setup directories for the program
+def createInstallDirs():
+	for dir in _INSTALL_DIRS:
+		if(not makeDir(dir)):
+			exit(-1)
 
 ##
 # @brief	Make the directory passed
@@ -50,6 +51,11 @@ def makeDir(path):
 		return False
 
 	return True
+
+## 
+# @brief	Entry for the program, and set's up the directories required
+def main():
+	createInstallDirs()
 
 if(__name__ == "__main__"):
 	main()
