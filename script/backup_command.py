@@ -1,15 +1,14 @@
-#!/usr/bin/python3
 ##
 # @package	script
 # @file		backup_command.py
 # @brief	Implement the Command Pattern for Backup Commands
 #
-# @date 	2018-12-15
+# @date 	2018-12-16
 # @author	sheltongabe
 
 # Import Command class, and ...
 try:
-	from design_patterns import Command
+	from design_patterns.command import Command
 except:
 	print("Unable to import neccassary modules for backup_command.py")
 	exit(-1)
@@ -19,12 +18,13 @@ except:
 # @brief	Command to execute a specific action related to backups on a workspace
 class BackupCommand (Command):
 
-	## Default Constructor, takes a list of workspaces
-	def __init__(self, workspaces):
+	## Default Constructor, takes a workspace to operate on
+	def __init__(self, workspace):
 		Command.__init__(self)
-		self.__workspaces = workspaces
-		self.__BACKUP_PATHS = []
-	
+
+		## List of workspace names
+		self.__workspaces = workspace
+
 	## implement the execute from the command
 	def execute(self):
 		Command.execute(self)
