@@ -23,9 +23,9 @@ class BackupCommand (Command):
 		Command.__init__(self)
 
 		## Workspace name
-		self.__workspace_name = workspace_name
+		self.workspace_name = workspace_name
 		## Workspace Source Path
-		self.__workspace = workspace
+		self.workspace = workspace
 
 	## implement the execute from the command
 	def execute(self):

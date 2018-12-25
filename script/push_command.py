@@ -30,8 +30,9 @@ class PushCommand (BackupCommand):
 	def execute(self):
 		# Fork a subprocess and wait for its completion
 		# Make sure a directory exists for the backup
-		subprocess.run(['mkdir', self.__workspace_name], cwd=CONFIGURATION['BACKUPS_PATH'])
-		completedProcess = subprocess.run(['rsync', '-ruz', self.__workspace, self.__workspace_name],
-				cwd=CONFIGURATION['BACKUPS_PATH'])
+		subprocess.run(['mkdir', self.workspace_name], cwd=CONFIGURATION['BACKUPS_PATH'], stderr=None)
+		completedProcess = subprocess.run(
+				['rsync', '-ruz', self.workspace, self.workspace_name],
+				cwd=CONFIGURATION['BACKUPS_PATH'], stderr=None)
 
 		return completedProcess.returncode == 0

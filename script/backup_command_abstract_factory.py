@@ -74,5 +74,5 @@ class BackupCommandAbstractFactory(AbstractFactory):
 		return workspacePaths
 	
 	## Build a PushCommand
-	def buildPushCommand(self, workspace):
-		return PushCommand(workspace)
+	def buildPushCommand(self, workspace_name, workspace):
+		return PushCommand(workspace_name, workspace)

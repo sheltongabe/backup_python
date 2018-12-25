@@ -108,6 +108,9 @@ venv.bak/
 *.ods
 *.uxf
 
+# Ignore the Backups folder I am using to test
+backups/
+
 # Configuration file
 configuration.json
 
