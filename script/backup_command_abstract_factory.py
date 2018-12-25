@@ -3,7 +3,7 @@
 # @file		backup_command_abstract_factory.py
 # @brief	Setup Abstract Factory for building commands
 #
-# @date		2018-12-21
+# @date		2018-12-24
 # @author	sheltongabe
 
 # Attempt imports
@@ -43,12 +43,13 @@ class BackupCommandAbstractFactory(AbstractFactory):
 	# @return	[list]		List of built commands
 	def build(self, action, workspaceNames):
 		# Get workspace paths from workspace names
-		workspacePaths = self.getWorkspaces(workspaceNames)
+		workspaces = self.getWorkspaces(workspaceNames)
 
 		# Build a list of commands from the workspace paths with the __BUILD_INDEX
 		commandList = []
-		for workspace in workspacePaths:
-			commandList.append(BackupCommandAbstractFactory.__BUILD_INDEX[action](workspace))
+		for workspaceName in workspaces:
+			commandList.append(BackupCommandAbstractFactory.__BUILD_INDEX[action](
+					workspaceName, workspaces[workspaceName]))
 		
 		return commandList
 
@@ -56,19 +57,19 @@ class BackupCommandAbstractFactory(AbstractFactory):
 	# @brief	Take in the workspace names and return the workspace paths
 	#
 	# @param	[list]		list of workspace names
-	# @return	[list]		list of workspace paths
+	# @return	{dict}		dictionary of workspace names and paths
 	def getWorkspaces(self, workspaceNames):
 		# List of workspace paths
-		workspacePaths = []
+		workspacePaths = {}
 
 		# First check if the first element is 'all', in which case return all of the workspaces
 		if(workspaceNames[0] == "all"):
 			for key in CONFIGURATION['workspaces']:
-				workspacePaths.append(CONFIGURATION['workspaces'][key])
+				workspacePaths[key] = CONFIGURATION['workspaces'][key]
 
 		else:
 			for workspaceName in workspaceNames:
-				workspacePaths.append(CONFIGURATION['workspaces'][workspaceName])
+				workspacePaths[workspaceName] = CONFIGURATION['workspaces'][workspaceName]
 		
 		return workspacePaths
 	

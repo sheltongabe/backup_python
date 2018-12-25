@@ -3,7 +3,7 @@
 # @file		backup_command.py
 # @brief	Implement the Command Pattern for Backup Commands
 #
-# @date 	2018-12-16
+# @date 	2018-12-24
 # @author	sheltongabe
 
 # Import Command class, and ...
@@ -19,11 +19,13 @@ except:
 class BackupCommand (Command):
 
 	## Default Constructor, takes a workspace to operate on
-	def __init__(self, workspace):
+	def __init__(self, workspace_name, workspace):
 		Command.__init__(self)
 
-		## List of workspace names
-		self.__workspaces = workspace
+		## Workspace name
+		self.__workspace_name = workspace_name
+		## Workspace Source Path
+		self.__workspace = workspace
 
 	## implement the execute from the command
 	def execute(self):

@@ -9,6 +9,8 @@
 # Attempt imports
 try:
 	from backup_command import BackupCommand
+	from configuration import CONFIGURATION
+	import subprocess
 except:
 	print("Error including Backup command and other modules needed for: script/PushCommand")
 	exit(-1)
@@ -19,9 +21,17 @@ except:
 class PushCommand (BackupCommand):
 	
 	## Default Constructor, takes to operate on
-	def __init__(self, workspace):
-		BackupCommand.__init__(self, workspace)
+	def __init__(self, workspace_name, workspace):
+		BackupCommand.__init__(self, workspace_name, workspace)
 
-	## Override execute to push for each workspace
+	## 
+	# @brief	Override execute to push for each workspace
+	# @return 	boolean		Did the command execute successfully
 	def execute(self):
-		pass
+		# Fork a subprocess and wait for its completion
+		# Make sure a directory exists for the backup
+		subprocess.run(['mkdir', self.__workspace_name], cwd=CONFIGURATION['BACKUPS_PATH'])
+		completedProcess = subprocess.run(['rsync', '-ruz', self.__workspace, self.__workspace_name],
+				cwd=CONFIGURATION['BACKUPS_PATH'])
+
+		return completedProcess.returncode == 0
