@@ -10,6 +10,7 @@
 try:
 	from design_patterns.abstract_factory import AbstractFactory
 	from push_command import PushCommand
+	from pull_command import PullCommand
 	from configuration import CONFIGURATION
 except:
 	print("Failed to import neccassary items in backup_command_abstract_factory.py.")
@@ -26,7 +27,8 @@ class BackupCommandAbstractFactory(AbstractFactory):
 
 		# Create the map for the building functions based on the actions
 		BackupCommandAbstractFactory.__BUILD_INDEX = {
-			"push" : self.buildPushCommand
+			"push" : self.buildPushCommand,
+			"pull" : self.buildPullCommand
 		}
 	
 	##
@@ -76,3 +78,7 @@ class BackupCommandAbstractFactory(AbstractFactory):
 	## Build a PushCommand
 	def buildPushCommand(self, workspace_name, workspace):
 		return PushCommand(workspace_name, workspace)
+
+	## Build a PullCommand
+	def buildPullCommand(self, workspace_name, workspace):
+		return PullCommand(workspace_name, workspace)

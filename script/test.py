@@ -15,5 +15,7 @@ except:
 	print("Failed to import neccessary modules for tests")
 	exit(-1)
 
-runBackup(['push'], ['wget'])
-runBackup(['push'], ['all'])
+runBackup('push', ['wget'])
+runBackup('push', ['all'])
+runBackup('pull', ['wget'])
+runBackup('pull', ['all'])
