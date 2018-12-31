@@ -7,4 +7,4 @@
 # @date		2018-12-15
 # @author	sheltongabe
 
-__ALL__ = ['command', 'abstract_factory']
+__ALL__ = ['command', 'composite_command','abstract_factory']

@@ -9,11 +9,12 @@
 # Attempt imports
 try:
 	from design_patterns.abstract_factory import AbstractFactory
+	from design_patterns.composite_command import CompositeCommand
 	from push_command import PushCommand
 	from pull_command import PullCommand
 	from configuration import CONFIGURATION
 except:
-	print("Failed to import neccassary items in backup_command_abstract_factory.py.")
+	print("Failed to import neccassary items in backup_command_abstract_factory.py")
 	exit(-1)
 
 ##
@@ -28,7 +29,8 @@ class BackupCommandAbstractFactory(AbstractFactory):
 		# Create the map for the building functions based on the actions
 		BackupCommandAbstractFactory.__BUILD_INDEX = {
 			"push" : self.buildPushCommand,
-			"pull" : self.buildPullCommand
+			"pull" : self.buildPullCommand,
+			"sync" : self.buildSyncCommand
 		}
 	
 	##
@@ -82,3 +84,10 @@ class BackupCommandAbstractFactory(AbstractFactory):
 	## Build a PullCommand
 	def buildPullCommand(self, workspace_name, workspace):
 		return PullCommand(workspace_name, workspace)
+	
+	## Build a syncing Command
+	def buildSyncCommand(self, workspace_name, workspace):
+		command = CompositeCommand()
+		command.addCommand(self.buildPullCommand(workspace_name, workspace))
+		command.addCommand(self.buildPushCommand(workspace_name, workspace))
+		return command

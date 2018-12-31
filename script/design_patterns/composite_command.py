@@ -8,7 +8,7 @@
 
 # Imports
 try:
-	from command import Command
+	from design_patterns.command import Command
 except:
 	print('Failed to import neccassary modules for design_patterns/composite_command.py')
 	exit(-1)
