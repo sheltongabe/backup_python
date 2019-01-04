@@ -32,7 +32,7 @@ class PushCommand (BackupCommand):
 		# Make sure a directory exists for the backup
 		# subprocess.run(['mkdir', self.workspace_name], cwd=CONFIGURATION['BACKUPS_PATH'], stderr=None)
 		completedProcess = subprocess.run(
-				['rsync', '-ruz', self.workspace + self.workspace_name + '/', self.workspace_name],
+				['rsync', '-rup', '--chmod=u=rwX,g=,o=', '-z', self.workspace + self.workspace_name + '/', self.workspace_name],
 				cwd=CONFIGURATION['BACKUPS_PATH'], stderr=None)
 
 		return completedProcess.returncode == 0

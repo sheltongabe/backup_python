@@ -31,7 +31,7 @@ class PullCommand (BackupCommand):
 		# Fork a subprocess and wait for its completion
 		# Make sure a directory exists for the backup
 		completedProcess = subprocess.run(
-				['rsync', '-ruz', self.workspace_name, self.workspace],
+				['rsync', '-rup', '--chmod=u=rwX,g=,o=', '-z', self.workspace_name, self.workspace],
 				cwd=CONFIGURATION['BACKUPS_PATH'], stderr=None)
 
 		return completedProcess.returncode == 0
